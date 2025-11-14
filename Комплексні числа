@@ -1,0 +1,38 @@
+from __future__ import annotations
+from dataclasses import dataclass
+import math
+
+@dataclass(frozen=True)
+class Complex:
+    re: float
+    im: float
+
+
+def add_complex(a: Complex, b: Complex) -> Complex:
+    match a, b:
+        case Complex(ar, ai), Complex(br, bi):
+            return Complex(ar + br, ai + bi)
+
+
+def sub_complex(a: Complex, b: Complex) -> Complex:
+    match a, b:
+        case Complex(ar, ai), Complex(br, bi):
+            return Complex(ar - br, ai - bi)
+
+
+def mul_complex(a: Complex, b: Complex) -> Complex:
+    match a, b:
+        case Complex(ar, ai), Complex(br, bi):
+            return Complex(ar*br - ai*bi, ar*bi + ai*br)
+
+
+def conj_complex(a: Complex) -> Complex:
+    match a:
+        case Complex(ar, ai):
+            return Complex(ar, -ai)
+
+
+def abs_complex(a: Complex) -> float:
+    match a:
+        case Complex(ar, ai):
+            return math.sqrt(ar*ar + ai*ai)
